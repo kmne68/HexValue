@@ -16,16 +16,50 @@ public class HexValue {
      */
     
     static int decimalValue;
-    static char myValue;
+    static String inputValue;
+    static String myValue;
+    static int finalValue;
     
     public static void main(String[] args) {
         
-        System.out.println("The decimal value of the hex number is: " + hexValue(myValue));
+        TextIO.putln("Please enter a hex value: ");
+        inputValue = TextIO.getlnString();
+          
+        System.out.println("The decimal value of the hex number is: " + hexValue(inputValue));
               
     }
     
     
-    public static int hexValue(char value) {
+    public static int hexValue(String value) {
+        
+        myValue = value.toUpperCase();
+        char testValue;
+        int finalValue = 0;
+        
+        for(int i = 0; i < myValue.length(); i++)
+        {
+            testValue = myValue.charAt(i);
+        
+            if((Character.getNumericValue(testValue) >= 0 && Character.getNumericValue(testValue) <= 9)) 
+                decimalValue = Character.getNumericValue(testValue);            
+            else {            
+                switch (testValue) {
+                    case 'A': decimalValue = 10;
+                        break;
+                    case 'B': decimalValue = 11;
+                        break;
+                    case 'C': decimalValue = 12;
+                        break;
+                    case 'D': decimalValue = 13;
+                        break;
+                    case 'E': decimalValue = 14;
+                        break;
+                    case 'F': decimalValue = 15;
+                        break;
+                    default: decimalValue = -1;                   
+                }    
+            }
+        }
         
         return decimalValue;
     }
